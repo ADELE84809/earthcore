@@ -10,17 +10,18 @@
 - [x] Verified local TypeScript check and optimized production build; rendered the homepage in headless Chromium and corrected MapLibre worker URL and container sizing.
 
 ## Incomplete / not to be represented as finished
-- [ ] Network requests from this development sandbox are blocked; live provider access, values and imagery tiles were not verified here. Verify from deployed runtime.
-- [ ] Mission Control's location selection is not yet wired to a complete location detail panel; search-to-coordinate route and interaction need end-to-end work.
+- [ ] The development sandbox blocks outbound requests, but deployed API smoke tests returned real provider values. Rendered NASA GIBS raster tile pixels still need visual browser verification.
+- [ ] Mission Control coordinate/event/earthquake selection and location routes are wired; automated browser tests of the full selection flow remain outstanding.
 - [ ] City comparisons are route scaffolding; synchronized comparison is not implemented.
 - [ ] Ecosystem / forest products, bounded urban shade tool, deterministic explanations, persistence/auth, scheduled refresh and export/share-state remain planned.
 - [ ] Browser automation suite, accessibility audit, provider integration tests and deployment verification remain outstanding.
-- [x] Vercel deployment `dpl_CgiJ539fo5DbYysAdM9SNEronf8Y` completed successfully; production alias `earthcore-indol.vercel.app` verified live. A second deployment with the encoded-coordinate fix is in progress.
+- [x] Final Vercel production deployment `dpl_G4H7efAYWTTbGWxdpWKJx34weUXg` is READY/PROMOTED; public alias `https://earthcore-indol.vercel.app` verified with homepage, Mission Control, location dashboard and API responses.
+- [x] Production smoke tests confirmed actual Open-Meteo weather/air/climate, geocoding, NASA EONET, USGS feeds, NASA GIBS layer/date metadata, coverage and health routes. Raster tiles and mobile browser behavior still need a true browser/device pass.
 - [x] Requested `earthcore.vercel.app` domain is unavailable: Vercel rejected assignment because it is already assigned to another project.
 
 ## Next
-1. Finish the latest Vercel deployment, verify the coordinate-route fix, and recheck real external feeds and source timestamps.
-2. Implement place-selection flow and location panel in Explore; make the command palette navigate to coordinate-specific location routes.
-3. Add unit/integration/browser tests and responsive/accessibility checks.
+1. Add browser-level tests for globe selection, encoded and named location routes, layer controls, and mobile/accessibility behavior; visually verify NASA GIBS tile rendering.
+2. Add provider integration tests for provenance, validity/retrieval timestamps, missing-data behavior and graceful failure states.
+3. Implement synchronized city comparison and climate/location chart expansion using validated sources.
 4. Implement compare and climate/location chart expansion based on validated sources.
 5. Only then build ecosystem indicators and the bounded scenario lab.

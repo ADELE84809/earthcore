@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./planet-os.css";
 
 @theme inline {
   --color-void: #03060d;

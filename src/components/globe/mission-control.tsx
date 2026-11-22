@@ -5,88 +5,19 @@ import Link from "next/link";
 import { GlobeMount } from "@/components/globe/globe-mount";
 import { formatCoordinate, encodeLocationSlug } from "@/lib/geo";
 import type { Earthquake, ImageryLayer, NaturalEvent } from "@/lib/types";
-import { Panel } from "@/components/ui/primitives";
 
-export function MissionControl({
-  imageryLayers,
-  imageryDate,
-  events,
-  earthquakes,
-  eventsError,
-  earthquakesError,
-  retrievedAt,
-}: {
-  imageryLayers: ImageryLayer[];
-  imageryDate: string;
-  events: NaturalEvent[];
-  earthquakes: Earthquake[];
-  eventsError: string | null;
-  earthquakesError: string | null;
-  retrievedAt: string;
-}) {
-  const [point, setPoint] = useState<{ latitude: number; longitude: number } | null>(null);
-  const [placeName, setPlaceName] = useState("Selected coordinates");
-  const href = point ? `/location/${encodeLocationSlug(placeName, point.latitude, point.longitude)}` : null;
-
-  return (
-    <div className="grid gap-4 xl:grid-cols-[220px_minmax(0,1fr)_320px]">
-      <Panel className="order-2 p-4 xl:order-1">
-        <p className="eyebrow mb-4">INTELLIGENCE LAYERS</p>
-        {["Weather · modeled", "Air quality · modeled", "Satellite imagery", `Natural events · ${eventsError ? "unavailable" : events.length}`, `Earthquakes · ${earthquakesError ? "unavailable" : earthquakes.length}`, "Data coverage"].map((label) => (
-          <div key={label} className="mb-2 rounded-lg border border-line/60 bg-white/[0.02] px-3 py-3 text-[12px] text-muted">{label}</div>
-        ))}
-        <p className="mt-5 text-[11px] leading-5 text-muted">Satellite availability is verified against NASA GIBS metadata. Event feeds are informational, not hazard alerts.</p>
-      </Panel>
-
-      <div className="order-1 min-w-0 xl:order-2">
-        <div className="relative h-[55vh] min-h-[420px] overflow-hidden rounded-2xl border border-line/60 bg-void">
-          <GlobeMount
-            imageryLayers={imageryLayers}
-            imageryDate={imageryDate}
-            events={events}
-            earthquakes={earthquakes}
-            showEvents
-            showEarthquakes
-            interactive
-            autoRotate
-            selected={point ? { ...point, label: placeName } : null}
-            onSelectCoordinate={(latitude, longitude) => {
-              setPlaceName("Selected coordinates");
-              setPoint({ latitude, longitude });
-            }}
-            onSelectEvent={(event) => {
-              if (!event.point) return;
-              setPlaceName(event.title);
-              setPoint({ latitude: event.point.latitude, longitude: event.point.longitude });
-            }}
-            onSelectEarthquake={(quake) => {
-              setPlaceName(quake.place);
-              setPoint({ latitude: quake.latitude, longitude: quake.longitude });
-            }}
-            ariaLabel="Interactive globe with satellite imagery, natural event and earthquake layers"
-          />
-          <div className="absolute bottom-4 left-4 rounded-full border border-line bg-void/80 px-3 py-2 text-[10px] text-muted backdrop-blur">
-            {point ? formatCoordinate(point.latitude, point.longitude) : "Drag to rotate · click the globe or a marker"}
-          </div>
-        </div>
-        <div className="mt-3 flex flex-wrap gap-2">{imageryLayers.slice(0, 6).map((layer) => <span key={layer.id} className="chip">{layer.title}</span>)}</div>
-      </div>
-
-      <Panel className="order-3 p-5">
-        <p className="eyebrow">INTELLIGENCE PANEL</p>
-        <h2 className="display mt-3 text-2xl text-text">{point ? placeName : "Choose a point on Earth"}</h2>
-        <p className="mt-3 text-sm leading-6 text-muted">
-          {point
-            ? `${formatCoordinate(point.latitude, point.longitude)}. Open the coordinate-resolved dashboard to inspect available environmental data.`
-            : "The globe shows source-backed event and earthquake records. Click a place or marker to resolve its coordinates, then open the location dashboard."}
-        </p>
-        {href ? <Link href={href} className="btn btn-primary mt-5 inline-flex h-10 items-center px-4">Open location intelligence</Link> : <Link href="/location/jaipur@26.9124,75.7873" className="mt-5 block rounded-xl border border-line/60 p-4 text-xs text-muted hover:border-cyan/50">Example location · Jaipur</Link>}
-        <div className="mt-6 space-y-3 text-xs text-muted">
-          <p>Open events: <strong className="text-text">{eventsError ? "Unavailable" : events.length}</strong></p>
-          <p>Earthquakes in feed: <strong className="text-text">{earthquakesError ? "Unavailable" : earthquakes.length}</strong></p>
-          <p>Retrieved: <strong className="text-text">{retrievedAt}</strong></p>
-        </div>
-      </Panel>
-    </div>
-  );
+const TOOLS = [{label:"Explore",href:"/explore",icon:"◎"},{label:"Weather",href:"/location/jaipur@26.9124,75.7873",icon:"◌"},{label:"Climate",href:"/climate",icon:"⌁"},{label:"Air",href:"/atmosphere",icon:"◍"},{label:"Ecosystems",href:"/ecosystems",icon:"♧"},{label:"Events",href:"/events",icon:"✳"},{label:"Compare",href:"/compare",icon:"⇄"}];
+export function MissionControl({ imageryLayers, imageryDate, events, earthquakes, eventsError, earthquakesError, retrievedAt }: { imageryLayers: ImageryLayer[]; imageryDate: string; events: NaturalEvent[]; earthquakes: Earthquake[]; eventsError: string|null; earthquakesError: string|null; retrievedAt: string }) {
+ const [point,setPoint]=useState<{latitude:number;longitude:number}|null>(null);const [placeName,setPlaceName]=useState("Selected coordinates");
+ const href=point?`/location/${encodeLocationSlug(placeName,point.latitude,point.longitude)}`:null;
+ return <section className="mission-shell relative isolate h-[calc(100svh-64px)] min-h-[620px] overflow-hidden bg-[#02040A]">
+  <div className="absolute inset-0"><GlobeMount imageryLayers={imageryLayers} imageryDate={imageryDate} events={events} earthquakes={earthquakes} showEvents showEarthquakes interactive autoRotate={false} selected={point?{...point,label:placeName}:null} onSelectCoordinate={(latitude,longitude)=>{setPlaceName("Selected coordinates");setPoint({latitude,longitude})}} onSelectEvent={event=>{if(!event.point)return;setPlaceName(event.title);setPoint({latitude:event.point.latitude,longitude:event.point.longitude})}} onSelectEarthquake={quake=>{setPlaceName(quake.place);setPoint({latitude:quake.latitude,longitude:quake.longitude})}} ariaLabel="Interactive Earth globe with satellite imagery, natural events and earthquakes"/></div>
+  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(2,4,10,.36)_100%)]"/>
+  <div className="absolute left-6 top-6 z-10 max-w-[290px] sm:left-9 sm:top-8"><p className="font-mono text-[9px] tracking-[.2em] text-[#69E5F2]">EARTHCORE / PLANET OS</p><h1 className="mt-2 text-2xl font-light tracking-[-.04em] text-[#F7FAFF] sm:text-3xl">Explore the living planet.</h1><p className="mt-2 text-xs text-[#9BACBF]">Select a point or source-backed event to reveal its context.</p></div>
+  <div className="absolute right-5 top-6 z-10 flex items-center gap-2 rounded-full border border-white/10 bg-[#060B15]/75 px-3 py-2 font-mono text-[9px] tracking-wider text-[#9BACBF] backdrop-blur-md"><i className="h-1.5 w-1.5 rounded-full bg-[#54DBB3]"/> OBSERVATION · {imageryDate}</div>
+  {point&&<aside className="absolute bottom-28 left-5 z-20 w-[min(340px,calc(100vw-40px))] border border-white/15 bg-[#060B15]/90 p-5 shadow-2xl backdrop-blur-xl sm:bottom-28 sm:left-8"><button aria-label="Close location details" onClick={()=>setPoint(null)} className="absolute right-4 top-3 text-lg text-[#9BACBF]">×</button><p className="font-mono text-[9px] tracking-[.18em] text-[#69E5F2]">LOCATION SELECTED</p><h2 className="mt-2 pr-5 text-2xl font-light text-white">{placeName}</h2><p className="mt-1 font-mono text-[11px] text-[#9BACBF]">{formatCoordinate(point.latitude,point.longitude)}</p>{href&&<Link href={href} className="mt-5 inline-flex border border-white/25 px-4 py-2.5 text-[10px] tracking-widest text-white hover:border-[#69E5F2]">OPEN LOCATION INTELLIGENCE →</Link>}<p className="mt-3 text-[9px] text-[#8192a7]">Coordinates selected on globe · environmental values load on the location page</p></aside>}
+  <div className="absolute bottom-[82px] left-1/2 z-20 flex max-w-[calc(100vw-24px)] -translate-x-1/2 gap-1 overflow-x-auto border border-white/10 bg-[#060B15]/85 p-1.5 shadow-[0_10px_45px_#0009] backdrop-blur-xl" aria-label="Planet tools">{TOOLS.map(tool=><Link key={tool.label} href={tool.href} aria-current={tool.label==="Explore"?"page":undefined} className={`flex min-w-[64px] flex-col items-center gap-1 px-3 py-2 text-[9px] transition-colors ${tool.label==="Explore"?"bg-white/10 text-white":"text-[#9BACBF] hover:bg-white/5 hover:text-white"}`}><span className="text-base leading-none">{tool.icon}</span>{tool.label}</Link>)}</div>
+  <div className="absolute bottom-5 left-5 z-10 max-w-[40vw] font-mono text-[8px] leading-4 text-[#9BACBF] sm:left-8">{eventsError?"EONET unavailable":`${events.length} open events · NASA EONET`} <span className="text-white/25">/</span> {earthquakesError?"USGS unavailable":`${earthquakes.length} earthquakes · USGS`}<br/>FEEDS RETRIEVED {new Date(retrievedAt).toLocaleTimeString("en-GB",{timeZone:"UTC",hour:"2-digit",minute:"2-digit"})} UTC · NOT HAZARD ALERTS</div>
+  <div className="absolute bottom-5 right-5 z-10 hidden text-right font-mono text-[8px] text-[#9BACBF] sm:block">NASA GIBS · {imageryLayers.length} VERIFIED LAYERS<br/>CLICK GLOBE TO INSPECT</div>
+ </section>;
 }

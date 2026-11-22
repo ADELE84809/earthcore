@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+ <defs>
+  <radialGradient id="bg"><stop stop-color="#10243a"/><stop offset="1" stop-color="#03060d"/></radialGradient>
+  <radialGradient id="earth" cx="35%" cy="30%"><stop stop-color="#57e7f5"/><stop offset=".55" stop-color="#2166a5"/><stop offset="1" stop-color="#07101c"/></radialGradient>
+  <linearGradient id="ring"><stop stop-color="#57e7f5"/><stop offset="1" stop-color="#8d8cf7"/></linearGradient>
+ </defs>
+ <rect width="1200" height="630" fill="url(#bg)"/>
+ <g opacity=".3" stroke="#b4d2ff" stroke-opacity=".22"><path d="M0 126h1200M0 252h1200M0 378h1200M0 504h1200M150 0v630M300 0v630M450 0v630M600 0v630M750 0v630M900 0v630M1050 0v630"/></g>
+ <circle cx="910" cy="315" r="185" fill="url(#earth)" stroke="#57e7f5" stroke-opacity=".5"/>
+ <ellipse cx="910" cy="315" rx="225" ry="75" fill="none" stroke="url(#ring)" stroke-width="3" transform="rotate(-24 910 315)"/>
+ <g fill="#3be0ae"><circle cx="1090" cy="218" r="7"/><circle cx="802" cy="442" r="4"/></g>
+ <text x="72" y="116" fill="#57e7f5" font-family="Arial,sans-serif" font-size="18" letter-spacing="8">EARTHCORE / PLANETARY INTELLIGENCE</text>
+ <text x="72" y="280" fill="#f5f9ff" font-family="Arial,sans-serif" font-size="66" font-weight="600">THE EARTH,</text>
+ <text x="72" y="358" fill="#f5f9ff" font-family="Arial,sans-serif" font-size="66" font-weight="600">REIMAGINED</text>
+ <text x="72" y="436" fill="#a2b2c8" font-family="Arial,sans-serif" font-size="66">THROUGH DATA.</text>
+ <text x="76" y="520" fill="#a2b2c8" font-family="Arial,sans-serif" font-size="22">One Planet. Infinite Intelligence.</text>
+</svg>

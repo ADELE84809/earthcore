@@ -103,7 +103,7 @@ See [src/app/api](src/app/api) for schemas, validation and route behavior. Every
 
 ## Deployment
 
-The app is compatible with Vercel's Next.js runtime. Configure no secrets for the current public integrations. Deploy only through an authorized project/account, then verify the assigned URL, browser network requests, API timestamps, imagery availability, mobile layout and logs. Do not assume `earthcore.vercel.app` is available until Vercel confirms it.
+The app is compatible with Vercel's Next.js runtime. Configure no secrets for the current public integrations. Deploy only through an authorized project/account, then verify the assigned URL, browser network requests, API timestamps, imagery availability, mobile layout and logs. The requested `earthcore.vercel.app` hostname is already assigned to another Vercel project (confirmed by the domain-assignment conflict). Current assigned production hostname: `https://earthcore-indol.vercel.app`. Do not assume the preferred hostname is available.
 
 ## Original engineering
 

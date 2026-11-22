@@ -5,7 +5,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://earthcore.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://earthcore-indol.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

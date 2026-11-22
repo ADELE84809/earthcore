@@ -15,10 +15,11 @@
 - [ ] City comparisons are route scaffolding; synchronized comparison is not implemented.
 - [ ] Ecosystem / forest products, bounded urban shade tool, deterministic explanations, persistence/auth, scheduled refresh and export/share-state remain planned.
 - [ ] Browser automation suite, accessibility audit, provider integration tests and deployment verification remain outstanding.
-- [ ] Vercel production deployment and requested domain availability are not verified.
+- [x] Vercel deployment `dpl_CgiJ539fo5DbYysAdM9SNEronf8Y` completed successfully; production alias `earthcore-indol.vercel.app` verified live. A second deployment with the encoded-coordinate fix is in progress.
+- [x] Requested `earthcore.vercel.app` domain is unavailable: Vercel rejected assignment because it is already assigned to another project.
 
 ## Next
-1. Ensure deployment credentials/authorization, deploy, and test real external feeds and source timestamps.
+1. Finish the latest Vercel deployment, verify the coordinate-route fix, and recheck real external feeds and source timestamps.
 2. Implement place-selection flow and location panel in Explore; make the command palette navigate to coordinate-specific location routes.
 3. Add unit/integration/browser tests and responsive/accessibility checks.
 4. Implement compare and climate/location chart expansion based on validated sources.

@@ -378,13 +378,13 @@ export function SolutionsTeaser() {
                 Understand the problem. Explore the possibilities.
               </h2>
               <p className="mt-5 max-w-[440px] text-[13.5px] leading-relaxed text-muted">
-                Observation is only the beginning. The EarthCore Solutions Lab turns a bounded
-                geographic question — where would shade fall? — into a documented, hypothetical
-                scenario you can inspect and export.
+                Observation is only the beginning. A bounded urban-shade planning tool is on the
+                roadmap; it is not yet available. Any future scenario will document its geometry,
+                solar assumptions and limits rather than promise a temperature outcome.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link href="/solutions" className="btn btn-primary h-11 px-5 text-[13px]">
-                  Open the Solutions Lab
+                  View the Solutions Lab roadmap
                 </Link>
                 <span className="self-center text-[10.5px] text-muted/60">
                   Hypothetical scenarios · never a temperature forecast

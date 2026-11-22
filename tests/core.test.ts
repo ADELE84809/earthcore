@@ -25,6 +25,7 @@ describe("coordinate tools", () => {
   it("round-trips stable location route slugs", () => {
     const slug = encodeLocationSlug("Jaipur", 26.9124, 75.7873);
     expect(decodeLocationSlug(slug)).toEqual({ name: "jaipur", latitude: 26.9124, longitude: 75.7873 });
+    expect(decodeLocationSlug(encodeURIComponent(slug))).toEqual({ name: "jaipur", latitude: 26.9124, longitude: 75.7873 });
   });
   it("computes approximate great-circle distance", () => {
     expect(haversineKm({ latitude: 0, longitude: 0 }, { latitude: 0, longitude: 1 })).toBeCloseTo(111.2, 0);

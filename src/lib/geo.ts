@@ -104,7 +104,13 @@ export function encodeLocationSlug(name: string, latitude: number, longitude: nu
 export function decodeLocationSlug(
   slug: string,
 ): { name: string; latitude: number; longitude: number } | null {
-  const match = /^(.*?)@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/.exec(slug);
+  let decoded = slug;
+  try {
+    decoded = decodeURIComponent(slug);
+  } catch {
+    // A malformed escape should fail coordinate validation below, not crash the route.
+  }
+  const match = /^(.*?)@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/.exec(decoded);
   if (!match) return null;
   const latitude = Number(match[2]);
   const longitude = Number(match[3]);

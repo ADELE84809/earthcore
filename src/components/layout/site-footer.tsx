@@ -17,7 +17,7 @@ const COLUMNS = [
       { href: "/compare", label: "Compare locations" },
       { href: "/ecosystems", label: "Ecosystems" },
       { href: "/solutions", label: "Solutions Lab" },
-      { href: "/location/26.9124,75.7873", label: "City dashboards" },
+      { href: "/location/jaipur@26.9124,75.7873", label: "City dashboards" },
     ],
   },
   {

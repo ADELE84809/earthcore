@@ -1,0 +1,352 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-void: #03060d;
+  --color-navy: #07101c;
+  --color-panel: #0d1929;
+  --color-raised: #12243a;
+  --color-blue: #4b8eff;
+  --color-cyan: #57e7f5;
+  --color-aurora: #3be0ae;
+  --color-violet: #8d8cf7;
+  --color-amber: #f4b55c;
+  --color-coral: #f07878;
+  --color-text: #f5f9ff;
+  --color-muted: #a2b2c8;
+  --color-line: rgba(180, 210, 255, 0.13);
+  --color-line-strong: rgba(180, 210, 255, 0.24);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", "Roboto Mono",
+    monospace;
+
+  --radius-panel: 18px;
+  --radius-control: 10px;
+}
+
+:root {
+  --void: #03060d;
+  --navy: #07101c;
+  --panel: #0d1929;
+  --raised: #12243a;
+  --blue: #4b8eff;
+  --cyan: #57e7f5;
+  --aurora: #3be0ae;
+  --violet: #8d8cf7;
+  --amber: #f4b55c;
+  --coral: #f07878;
+  --text: #f5f9ff;
+  --muted: #a2b2c8;
+  --line: rgba(180, 210, 255, 0.13);
+  color-scheme: dark;
+  interpolate-size: allow-keywords;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  background: var(--void);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" 1, "cv11" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(75, 142, 255, 0.35);
+  color: #fff;
+}
+
+/* Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180, 210, 255, 0.22) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(180, 210, 255, 0.18);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Typography helpers ---------- */
+
+.display {
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+}
+
+.eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---------- Surfaces ---------- */
+
+.hairline {
+  border: 1px solid var(--line);
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(18, 36, 58, 0.72), rgba(9, 20, 34, 0.72));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  backdrop-filter: blur(14px);
+}
+
+.panel-solid {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+}
+
+.glass {
+  background: rgba(7, 16, 28, 0.55);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(18px) saturate(120%);
+}
+
+.grid-overlay {
+  background-image: linear-gradient(to right, rgba(180, 210, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180, 210, 255, 0.055) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 78%);
+}
+
+.starfield {
+  background-image: radial-gradient(1px 1px at 18% 22%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 14%, rgba(255, 255, 255, 0.55) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 44% 64%, rgba(255, 255, 255, 0.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 86% 48%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    radial-gradient(0.9px 0.9px at 9% 76%, rgba(255, 255, 255, 0.4) 50%, transparent 51%),
+    radial-gradient(1.1px 1.1px at 62% 86%, rgba(255, 255, 255, 0.35) 50%, transparent 51%),
+    radial-gradient(1px 1px at 33% 9%, rgba(255, 255, 255, 0.4) 50%, transparent 51%);
+  background-size: 420px 420px;
+}
+
+.glow-orb {
+  background: radial-gradient(circle at 50% 50%, rgba(87, 231, 245, 0.16), transparent 62%);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+  white-space: nowrap;
+}
+
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: #04101c;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+}
+.btn-primary:hover {
+  background: #fff;
+  box-shadow: 0 8px 30px -8px rgba(87, 231, 245, 0.35);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-ghost {
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.02);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(180, 210, 255, 0.4);
+}
+
+/* ---------- Chips / pills ---------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 11.5px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.015);
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease;
+}
+.chip[data-active="true"] {
+  border-color: rgba(87, 231, 245, 0.45);
+  color: var(--text);
+  background: rgba(87, 231, 245, 0.08);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* ---------- Reveal animation ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Misc ---------- */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
+  display: none;
+}
+
+.maplibregl-canvas:focus {
+  outline: none;
+}
+
+/* ---------- Globe pin ---------- */
+.ec-pin {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+.ec-pin-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 999px;
+  background: #57e7f5;
+  box-shadow: 0 0 0 2px rgba(3, 6, 13, 0.85), 0 0 18px 2px rgba(87, 231, 245, 0.7);
+}
+.ec-pin-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(87, 231, 245, 0.55);
+  animation: ec-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ec-ping {
+  0% { transform: scale(0.4); opacity: 0.9; }
+  70% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ---------- Search palette / misc animations ---------- */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* EarthCore MapLibre controls use the same dark scientific surface as the globe. */
+.maplibregl-ctrl-group { background: #0D1929 !important; border: 1px solid rgba(180,210,255,.18) !important; box-shadow: 0 8px 24px rgba(0,0,0,.35) !important; }
+.maplibregl-ctrl-group button { filter: invert(1) hue-rotate(180deg); }
+.maplibregl-ctrl-group button + button { border-top: 1px solid rgba(180,210,255,.14) !important; }
+.maplibregl-ctrl-attrib { background: rgba(3,6,13,.78) !important; color: #A2B2C8 !important; }
